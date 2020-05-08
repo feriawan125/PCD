@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCD Blending</title>
+
+    <!-- P5 js -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+
+</head>
+<body>
+    <div id="">
+        <p>prosentase komposisi gambar:</p>
+        <label style="margin-right: 1rem;" for="">Gambar 1</label>
+        <input class="" type="range" min="0" max="100" id="pictWeight" name="" value="50" step="1" oninput="changeInputValue(this.value)" />
+        <input class="" type="number" id="pictWeightNum" min="0" max="100" value="50" onkeyup="changeRangeValue(this.value)"/> 
+        <label style="margin-left: 1rem;" for="">gambar 2</label>  
+    </div>
+    <br>
+    <script src="js/blending.js"></script>
+</body>
+    <script>
+        function changeRangeValue(val){
+            pictWeight.value = isNaN(parseInt(val, 10)) ? 0 : parseInt(val, 10);
+        }
+        
+        function changeInputValue(val){
+            pictWeightNum.value = isNaN(parseInt(val, 10)) ? 0 : parseInt(val, 10);
+        }
+    </script>
+</html>
