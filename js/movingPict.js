@@ -1,6 +1,6 @@
 let file1, file2;
 let img1, img2, img3, img4;
-let w1, w2, weightNum, weightSlider, weightVal;
+let w1, weightNum, weightSlider, weightVal;
 let first;
 let sizeX, SizeY
 
@@ -28,17 +28,13 @@ function setup(){
 }
 function startBlend(){
     weightVal = this.value()
-    w1 = weightVal/100;
-    w2 = (100 - weightVal)/100;
-    print(w2);
-    blending();
+    w1 = weightVal;
+    detectMoving();
 }
 function firstBlend(){
     weightVal = 50
-    w1 = weightVal/100;
-    w2 = (100 - weightVal)/100;
-    print(w2);
-    blending();
+    w1 = weightVal;
+    detectMoving();
     
 }
 function draw() {
@@ -89,7 +85,7 @@ function drawPict2(){
 }
 
 
-function blending(){
+function detectMoving(){
     clear();
     if(img1 && img2){
         img1.loadPixels();
@@ -99,9 +95,9 @@ function blending(){
             for (let x = 0; x < img3.width; x++) {
               var index = (x + y * img3.width) * 4;
       
-              img3.pixels[index] = round(img1.pixels[index]*w1 + img2.pixels[index]*w2);
-              img3.pixels[index+1] = round(img1.pixels[index+1]*w1 + img2.pixels[index+1]*w2);
-              img3.pixels[index+2] = round(img1.pixels[index+2]*w1 + img2.pixels[index+2]*w2);
+              img3.pixels[index] = w1 + round(img1.pixels[index] - img2.pixels[index]);
+              img3.pixels[index+1] = w1 + round(img1.pixels[index+1] - img2.pixels[index+1]);
+              img3.pixels[index+2] = w1 + round(img1.pixels[index+2] - img2.pixels[index+2]);
             }
             img3.updatePixels();
         }

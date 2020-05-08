@@ -11,14 +11,14 @@
 </head>
 <body>
     <div id="">
-        <p>prosentase komposisi gambar:</p>
+        <p>Threshold:</p>
         <label style="margin-right: 1rem;" for="">Gambar 1</label>
-        <input class="" type="range" min="0" max="100" id="pictWeight" name="" value="50" step="1" oninput="changeInputValue(this.value)" />
-        <input class="" type="number" id="pictWeightNum" min="0" max="100" value="50" onkeyup="changeRangeValue(this.value)"/> 
+        <input class="" type="range" min="0" max="255" id="pictWeight" name="" value="128" step="1" oninput="changeInputValue(this.value)" />
+        <input class="" type="number" id="pictWeightNum" min="0" max="255" value="128" onkeyup="changeRangeValue(this.value)"/> 
         <label style="margin-left: 1rem;" for="">gambar 2</label>  
     </div>
     <br>
-    <script src="js/blending.js"></script>
+    <script src="js/movingPict.js"></script>
 </body>
     <script>
         function changeRangeValue(val){
