@@ -10,10 +10,18 @@
 
 </head>
 <body>
-    <div id="">
-        
-    </div>
+    <label for="degree">Derajat rotasi: </label>
+    <input type="number" id="numDegree" max="359" min="0" value="90" oninput="changeInputValue(this.value)">
     <br>
     <script src="js/rotation.js"></script>
 </body>
+    <script>
+        function changeInputValue(val){
+            if(val>365){
+                numDegree.value = 365;
+            }else if (val<0) {
+                numDegree.value = 0;
+            }
+        }
+    </script>
 </html>
