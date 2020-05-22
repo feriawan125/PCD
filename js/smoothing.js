@@ -85,7 +85,6 @@ function smoothing(){
                 tempG[y][x] = round((imgG[y][x])+(imgG[y][x-1])+(imgG[y-1][x])+(imgG[y+1][x])+(imgG[y][x+1])/5);
                 tempB[y][x] = round((imgB[y][x])+(imgB[y][x-1])+(imgB[y-1][x])+(imgB[y+1][x])+(imgB[y][x+1])/5);
             }
-            tempImg.updatePixels();
         }
 
         for (let y = 0; y < img.height; y++) {
@@ -98,5 +97,6 @@ function smoothing(){
                 
             }
         }
+        tempImg.updatePixels();
     }
 }
