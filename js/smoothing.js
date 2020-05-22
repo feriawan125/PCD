@@ -100,7 +100,9 @@ function smoothing(){
             for (let y = 1; y < img.height-1; y++) {
                 for (let x = 1; x < img.width-1; x++) {
                     tempR[y][x] = round((imgR[y][x]+imgR[y][x-1]+imgR[y-1][x]+imgR[y+1][x]+imgR[y][x+1]+imgR[y+1][x+1]+imgR[y-1][x-1]+imgR[y+1][x-1]+imgR[y-1][x+1])/9);
+
                     tempG[y][x] = round((imgG[y][x]+imgG[y][x-1]+imgG[y-1][x]+imgG[y+1][x]+imgG[y][x+1]+imgG[y+1][x+1]+imgG[y-1][x-1]+imgG[y+1][x-1]+imgG[y-1][x+1])/9);
+
                     tempB[y][x] = round((imgB[y][x]+imgB[y][x-1]+imgB[y-1][x]+imgB[y+1][x]+imgB[y][x+1]+imgB[y+1][x+1]+imgB[y-1][x-1]+imgB[y+1][x-1]+imgB[y-1][x+1])/9);
                 }
             }
@@ -109,8 +111,21 @@ function smoothing(){
             for (let y = 2; y < img.height-2; y++) {
                 for (let x = 2; x < img.width-2; x++) {
                     tempR[y][x] = round((imgR[y][x]+imgR[y][x-1]+imgR[y-1][x]+imgR[y+1][x]+imgR[y][x+1]+imgR[y+1][x+1]+imgR[y-1][x-1]+imgR[y+1][x-1]+imgR[y-1][x+1]+imgR[y+2][x-2]+imgR[y+2][x-1]+imgR[y+2][x]+imgR[y+2][x+1]+imgR[y+2][x+2]+imgR[y+1][x-2]+imgR[y+1][x+2]+imgR[y][x-2]+imgR[y][x+2]+imgR[y-1][x-2]+imgR[y-1][x+2]+imgR[y-2][x-2]+imgR[y-2][x-1]+imgR[y-2][x]+imgR[y-2][x+1]+imgR[y-2][x+2])/25);
+
                     tempG[y][x] = round((imgG[y][x]+imgG[y][x-1]+imgG[y-1][x]+imgG[y+1][x]+imgG[y][x+1]+imgG[y+1][x+1]+imgG[y-1][x-1]+imgG[y+1][x-1]+imgG[y-1][x+1]+imgG[y+2][x-2]+imgG[y+2][x-1]+imgG[y+2][x]+imgG[y+2][x+1]+imgG[y+2][x+2]+imgG[y+1][x-2]+imgG[y+1][x+2]+imgG[y][x-2]+imgG[y][x+2]+imgG[y-1][x-2]+imgG[y-1][x+2]+imgG[y-2][x-2]+imgG[y-2][x-1]+imgG[y-2][x]+imgG[y-2][x+1]+imgG[y-2][x+2])/25);
+
                     tempB[y][x] = round((imgB[y][x]+imgB[y][x-1]+imgB[y-1][x]+imgB[y+1][x]+imgB[y][x+1]+imgB[y+1][x+1]+imgB[y-1][x-1]+imgB[y+1][x-1]+imgB[y-1][x+1]+imgB[y+2][x-2]+imgB[y+2][x-1]+imgB[y+2][x]+imgB[y+2][x+1]+imgB[y+2][x+2]+imgB[y+1][x-2]+imgB[y+1][x+2]+imgB[y][x-2]+imgB[y][x+2]+imgB[y-1][x-2]+imgB[y-1][x+2]+imgB[y-2][x-2]+imgB[y-2][x-1]+imgB[y-2][x]+imgB[y-2][x+1]+imgB[y-2][x+2])/25);
+                }
+            }
+        }else if (pix == 49) {
+            for (let y = 2; y < img.height-2; y++) {
+                for (let x = 2; x < img.width-2; x++) {
+                    tempR[y][x] = round((imgR[y][x]+imgR[y][x-1]+imgR[y-1][x]+imgR[y+1][x]+imgR[y][x+1]+imgR[y+1][x+1]+imgR[y-1][x-1]+imgR[y+1][x-1]+imgR[y-1][x+1]+imgR[y+2][x-2]+imgR[y+2][x-1]+imgR[y+2][x]+imgR[y+2][x+1]+imgR[y+2][x+2]+imgR[y+1][x-2]+imgR[y+1][x+2]+imgR[y][x-2]+imgR[y][x+2]+imgR[y-1][x-2]+imgR[y-1][x+2]+imgR[y-2][x-2]+imgR[y-2][x-1]+imgR[y-2][x]+imgR[y-2][x+1]+imgR[y-2][x+2]+imgR[y+3][x-3]+imgR[y+3][x-2]+imgR[y+3][x-1]+imgR[y+3][x]+imgR[y+3][x+1]+imgR[y+3][x+2]+imgR[y+3][x+3]+imgR[y+2][x-3]+imgR[y+2][x+3]+imgR[y+1][x-3]+imgR[y+1][x+3]+imgR[y][x-3]+imgR[y][x+3]+imgR[y-1][x-3]+imgR[y-1][x+3]+imgR[y-2][x-2]+imgR[y-2][x+2]+imgR[y-3][x-3]+imgR[y-3][x-2]+imgR[y-3][x-1]+imgR[y-3][x]+imgR[y-3][x+1]+imgR[y-3][x+2]+imgR[y-3][x+3])/49);
+
+                    tempG[y][x] = round((imgG[y][x]+imgG[y][x-1]+imgG[y-1][x]+imgG[y+1][x]+imgG[y][x+1]+imgG[y+1][x+1]+imgG[y-1][x-1]+imgG[y+1][x-1]+imgG[y-1][x+1]+imgG[y+2][x-2]+imgG[y+2][x-1]+imgG[y+2][x]+imgG[y+2][x+1]+imgG[y+2][x+2]+imgG[y+1][x-2]+imgG[y+1][x+2]+imgG[y][x-2]+imgG[y][x+2]+imgG[y-1][x-2]+imgG[y-1][x+2]+imgG[y-2][x-2]+imgG[y-2][x-1]+imgG[y-2][x]+imgG[y-2][x+1]+imgG[y-2][x+2]+imgG[y+3][x-3]+imgG[y+3][x-2]+imgG[y+3][x-1]+imgG[y+3][x]+imgG[y+3][x+1]+imgG[y+3][x+2]+imgG[y+3][x+3]+imgG[y+2][x-3]+imgG[y+2][x+3]+imgG[y+1][x-3]+imgG[y+1][x+3]+imgG[y][x-3]+imgG[y][x+3]+imgG[y-1][x-3]+imgG[y-1][x+3]+imgG[y-2][x-2]+imgG[y-2][x+2]+imgG[y-3][x-3]+imgG[y-3][x-2]+imgG[y-3][x-1]+imgG[y-3][x]+imgG[y-3][x+1]+imgG[y-3][x+2]+imgG[y-3][x+3])/49);
+                    
+                    tempB[y][x] = round((imgB[y][x]+imgB[y][x-1]+imgB[y-1][x]+imgB[y+1][x]+imgB[y][x+1]+imgB[y+1][x+1]+imgB[y-1][x-1]+imgB[y+1][x-1]+imgB[y-1][x+1]+imgB[y+2][x-2]+imgB[y+2][x-1]+imgB[y+2][x]+imgB[y+2][x+1]+imgB[y+2][x+2]+imgB[y+1][x-2]+imgB[y+1][x+2]+imgB[y][x-2]+imgB[y][x+2]+imgB[y-1][x-2]+imgB[y-1][x+2]+imgB[y-2][x-2]+imgB[y-2][x-1]+imgB[y-2][x]+imgB[y-2][x+1]+imgB[y-2][x+2]+imgB[y+3][x-3]+imgB[y+3][x-2]+imgB[y+3][x-1]+imgB[y+3][x]+imgB[y+3][x+1]+imgB[y+3][x+2]+imgB[y+3][x+3]+imgB[y+2][x-3]+imgB[y+2][x+3]+imgB[y+1][x-3]+imgB[y+1][x+3]+imgB[y][x-3]+imgB[y][x+3]+imgB[y-1][x-3]+imgB[y-1][x+3]+imgB[y-2][x-2]+imgB[y-2][x+2]+imgB[y-3][x-3]+imgB[y-3][x-2]+imgB[y-3][x-1]+imgB[y-3][x]+imgB[y-3][x+1]+imgB[y-3][x+2]+imgB[y-3][x+3])/49);
+                    
                 }
             }
         }
