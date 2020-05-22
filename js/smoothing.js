@@ -5,6 +5,7 @@ let imgR, imgG, imgB;
 let tempR, tempG, tempB;
 let sizeX, sizeY;
 let first;
+let smoothBtn;
 
 
 function setup() {
@@ -14,6 +15,9 @@ function setup() {
     
     fileInput = createFileInput(handleFileInput);
     fileInput.position(5, 50);
+
+    smoothBtn = select("#smooth");
+    smoothBtn.mousePressed(startSmoothing);
     
     createCanvas(sizeX, sizeY);
     
@@ -32,10 +36,12 @@ function handleFileInput(file) {
         // img = createImage(500, 500);
         img = loadImage(file.data);
         img.resize(500, 500);
-        prepare();
-        smoothing();
         draw();
     }
+}
+function startSmoothing() {
+    prepare();
+    smoothing();
 }
 
 function prepare(){
@@ -71,8 +77,6 @@ function smoothing(){
                 tempR[y][x] = img.pixels[index];
                 tempG[y][x] = img.pixels[index+1];
                 tempB[y][x] = img.pixels[index+2];
-
-                print(img.pixels[index]);
             }
         }
         for (let y = 0; y < img.height-1; y++) {
