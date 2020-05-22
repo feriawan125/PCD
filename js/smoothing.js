@@ -16,14 +16,6 @@ function setup() {
     fileInput.position(5, 50);
     
     createCanvas(sizeX, sizeY);
-
-    imgR = [];
-    imgG = [];
-    imgB = [];
-
-    tempR = [];
-    tempG = [];
-    tempB = [];
     
 }
 function draw() {
@@ -47,7 +39,13 @@ function handleFileInput(file) {
 }
 
 function prepare(){
+    imgR = [];
+    imgG = [];
+    imgB = [];
 
+    tempR = [];
+    tempG = [];
+    tempB = [];
 }
 
 function smoothing(){
