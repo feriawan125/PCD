@@ -118,8 +118,8 @@ function smoothing(){
                 }
             }
         }else if (pix == 49) {
-            for (let y = 2; y < img.height-2; y++) {
-                for (let x = 2; x < img.width-2; x++) {
+            for (let y = 3; y < img.height-3; y++) {
+                for (let x = 3; x < img.width-3; x++) {
                     tempR[y][x] = round((imgR[y][x]+imgR[y][x-1]+imgR[y-1][x]+imgR[y+1][x]+imgR[y][x+1]+imgR[y+1][x+1]+imgR[y-1][x-1]+imgR[y+1][x-1]+imgR[y-1][x+1]+imgR[y+2][x-2]+imgR[y+2][x-1]+imgR[y+2][x]+imgR[y+2][x+1]+imgR[y+2][x+2]+imgR[y+1][x-2]+imgR[y+1][x+2]+imgR[y][x-2]+imgR[y][x+2]+imgR[y-1][x-2]+imgR[y-1][x+2]+imgR[y-2][x-2]+imgR[y-2][x-1]+imgR[y-2][x]+imgR[y-2][x+1]+imgR[y-2][x+2]+imgR[y+3][x-3]+imgR[y+3][x-2]+imgR[y+3][x-1]+imgR[y+3][x]+imgR[y+3][x+1]+imgR[y+3][x+2]+imgR[y+3][x+3]+imgR[y+2][x-3]+imgR[y+2][x+3]+imgR[y+1][x-3]+imgR[y+1][x+3]+imgR[y][x-3]+imgR[y][x+3]+imgR[y-1][x-3]+imgR[y-1][x+3]+imgR[y-2][x-2]+imgR[y-2][x+2]+imgR[y-3][x-3]+imgR[y-3][x-2]+imgR[y-3][x-1]+imgR[y-3][x]+imgR[y-3][x+1]+imgR[y-3][x+2]+imgR[y-3][x+3])/49);
 
                     tempG[y][x] = round((imgG[y][x]+imgG[y][x-1]+imgG[y-1][x]+imgG[y+1][x]+imgG[y][x+1]+imgG[y+1][x+1]+imgG[y-1][x-1]+imgG[y+1][x-1]+imgG[y-1][x+1]+imgG[y+2][x-2]+imgG[y+2][x-1]+imgG[y+2][x]+imgG[y+2][x+1]+imgG[y+2][x+2]+imgG[y+1][x-2]+imgG[y+1][x+2]+imgG[y][x-2]+imgG[y][x+2]+imgG[y-1][x-2]+imgG[y-1][x+2]+imgG[y-2][x-2]+imgG[y-2][x-1]+imgG[y-2][x]+imgG[y-2][x+1]+imgG[y-2][x+2]+imgG[y+3][x-3]+imgG[y+3][x-2]+imgG[y+3][x-1]+imgG[y+3][x]+imgG[y+3][x+1]+imgG[y+3][x+2]+imgG[y+3][x+3]+imgG[y+2][x-3]+imgG[y+2][x+3]+imgG[y+1][x-3]+imgG[y+1][x+3]+imgG[y][x-3]+imgG[y][x+3]+imgG[y-1][x-3]+imgG[y-1][x+3]+imgG[y-2][x-2]+imgG[y-2][x+2]+imgG[y-3][x-3]+imgG[y-3][x-2]+imgG[y-3][x-1]+imgG[y-3][x]+imgG[y-3][x+1]+imgG[y-3][x+2]+imgG[y-3][x+3])/49);
