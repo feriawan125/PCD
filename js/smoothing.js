@@ -79,8 +79,8 @@ function smoothing(){
                 tempB[y][x] = img.pixels[index+2];
             }
         }
-        for (let y = 0; y < img.height-1; y++) {
-            for (let x = 0; x < img.width-1; x++) {
+        for (let y = 1; y < img.height-1; y++) {
+            for (let x = 1; x < img.width-1; x++) {
                 tempR[y][x] = round((imgR[y][x])+(imgR[y][x-1])+(imgR[y-1][x])+(imgR[y+1][x])+(imgR[y][x+1])/5);
                 tempG[y][x] = round((imgG[y][x])+(imgG[y][x-1])+(imgG[y-1][x])+(imgG[y+1][x])+(imgG[y][x+1])/5);
                 tempB[y][x] = round((imgB[y][x])+(imgB[y][x-1])+(imgB[y-1][x])+(imgB[y+1][x])+(imgB[y][x+1])/5);
