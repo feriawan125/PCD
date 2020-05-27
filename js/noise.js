@@ -1,44 +1,44 @@
 let file;
 let img;
-let pertamaKali = true;
-let selNoise, txtNoise, noiseVal, ranNoise;
-let sizeX, sizeY;
 let imgR, imgG, imgB;
 let tempR, tempG, tempB;
 let temp;
+let first = true;
+let selNoise, txtNoise, noiseVal, ranNoise;
+let sizeX, sizeY;
+
 
 function setup() {
 
   sizeX = displayWidth-10;
   sizeY = displayHeight;
   createCanvas(sizeX, sizeY);
-  frameRate(30);
+
   file = createFileInput(handleFile);
   file.position(200, 5);
   txtNoise = select('#numNoise');
-  txtNoise.input(tresholdValueChange);
+  txtNoise.input(parameterChanged);
   ranNoise = select('#rangeNoise');
-  ranNoise.input(tresholdValueChange);
+  ranNoise.input(parameterChanged);
   selNoise = select('#selNoise');
-  selNoise.input(tresholdValueChange);
-  noiseVal = 0;
+  selNoise.input(parameterChanged);
   noiseMode = selNoise.value();
+  noiseVal = 0;
 
 }
 
 function draw() {
 
-  if (img && pertamaKali == true) {
-    pertamaKali = false;
+  if (img && first == true) {
+    first = false;
     noisePicture();
   }
 
 }
 
-function tresholdValueChange() {
+function parameterChanged() {
   noiseVal = txtNoise.value();
   noiseMode = selNoise.value();
-  print(noiseVal);
   noisePicture();
 }
 
