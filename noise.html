@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCD Noise</title>
+
+    <!-- P5 js -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+
+</head>
+<body>
+    <div id="">
+        <label for="selNoise">Noise Mode: </label>
+        <select name="selNoise" id="selNoise">
+            <option value="Gaussian">Gaussian</option>
+            <option value="SaltPepper">SaltPepper</option>
+        </select>
+        <p>Threshold Noise:</p>
+        <input type="range" min="0" max="1" id="rangeNoise" value="0" step="0.1" oninput="changeInputValue(this.value)" />
+        <input type="number" min="0" max="1" id="numNoise" value="0" step="0.1" onkeyup="changeRangeValue(this.value)"/> 
+    </div>
+    <br>
+    <script src="js/noise.js"></script>
+</body>
+    <script>
+        rangeNoise = document.getElementById("rangeNoise");
+        numNoise = document.getElementById("numNoise");
+        function changeRangeValue(val){
+            rangeNoise.value = isNaN(parseFloat(val)) ? 0 : parseFloat(val);
+            // console.log(isNaN(parseFloat(val)) ? 0 : parseFloat(val));
+        }
+        
+        function changeInputValue(val){
+            numNoise.value = isNaN(parseFloat(val)) ? 0 : parseFloat(val);
+            // console.log(isNaN(parseFloat(val)) ? 0 : parseFloat(val));
+        }
+    </script>
+</html>
