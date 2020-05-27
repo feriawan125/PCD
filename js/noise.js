@@ -1,20 +1,28 @@
 let file;
 let img;
 let pertamaKali = true;
-let selNoise, numNoise, naoiseVal;
+let selNoise, txtNoise, noiseVal, ranNoise;
+let sizeX, sizeY;
 let imgR, imgG, imgB;
 let tempR, tempG, tempB;
 let temp;
 
 function setup() {
 
-  createCanvas(550, 700);
+  sizeX = displayWidth-10;
+  sizeY = displayHeight;
+  createCanvas(sizeX, sizeY);
   frameRate(30);
   file = createFileInput(handleFile);
-  file.position(0, 0);
-  numNoise = select('#numNoise');
-  numNoise.changed(tresholdValueChange);
+  file.position(200, 5);
+  txtNoise = select('#numNoise');
+  txtNoise.input(tresholdValueChange);
+  ranNoise = select('#rangeNoise');
+  ranNoise.input(tresholdValueChange);
+  selNoise = select('#selNoise');
+  selNoise.input(tresholdValueChange);
   noiseVal = 0;
+  noiseMode = selNoise.value();
 
 }
 
@@ -28,15 +36,17 @@ function draw() {
 }
 
 function tresholdValueChange() {
-  noiseVal = numNoise.value();
-  movingPicture();
+  noiseVal = txtNoise.value();
+  noiseMode = selNoise.value();
+  print(noiseVal);
+  noisePicture();
 }
 
 
 function noisePicture() {
   clear();
   if (img) {
-    image(img, width / 2 - 125, file.height + 5, 250, 250);
+    image(img, 5, 60, 500, 500);
     //prepare the array
     imgR = [];
     imgG = [];
@@ -74,7 +84,7 @@ function noisePicture() {
       }
     }
 
-    if (radio.selected() == 'Gaussian') {
+    if (noiseMode == 'Gaussian') {
 
       for (let y = 0; y < tempImg.height - 1; y++) {
         for (let x = 0; x < tempImg.width - 1; x++) {
@@ -170,9 +180,8 @@ function noisePicture() {
     }
     
     tempImg.updatePixels();
-    image(tempImg, 150, 312,250,250);
+    image(tempImg, 550, 60, 500, 500);
   }
-  drawLines();
 }
 
 function handleFile(file) {
@@ -180,12 +189,12 @@ function handleFile(file) {
 
   if (file.type === 'image') {
     img = loadImage(file.data, drawFirstPicture);
-    img.resize(250, 250);
+    img.resize(500, 500);
   }
 }
 
 
 function drawFirstPicture() {
-  image(img, width / 2 - 125, file.height + 5, 250, 250);
+  image(img, 5, 60, 500, 500);
   draw();
 }
