@@ -1,13 +1,19 @@
 let file;
 let img;
 let tempImg;
-let selOperator, selArah, chkNegatif;
+let selOperator, selArah, chkNegatif, btnDetect;
 let imgR, imgG, imgB;
 let tempR, tempG, tempB;
 let sizeX, sizeY;
-let mask1, mask2;
 let sum1, sum2;
 
+
+let mask1 = [[ 0,  0,  0],
+            [ 0,  0,  0],
+            [ 0,  0, 0]];
+let mask2 = [[ 0,  0,  0],
+            [ 0,  0,  0],
+            [ 0,  0, 0]];
 
 const maskRobert1 = [[ 0,  0,  0],
                      [ 0,  1,  0],
@@ -50,9 +56,11 @@ function setup(){
 
     file = createFileInput(handleFile);
     file.position(200, 5);
-    selOperator = select('#selOPerator');
+    selOperator = select('#selOperator');
     selArah = select('#selArah');
     chkNegatif = select('#chkNegatif');
+    // btnDetect = select('#btnDetect');
+    // btnDetect.mousePressed(detect());
 
 }
 
@@ -77,8 +85,9 @@ function setOperator(){
     }
 }
 
-function setArah(pixel, s1, s2){
+function setArah(s1, s2){
     arah = selArah.value();
+    pixel = 0
     if(arah == 'mask1'){
         pixel = round(abs(s1));
     }else if (arah == 'mask2') {
@@ -97,17 +106,17 @@ function setArah(pixel, s1, s2){
     return pixel;
 }
 
-function setSum() {
+function setSum(y, x, pixel) {
     sum1 = 0;
-    for (let u = -1; u<1;u++){
-        for(let v = -1; v<1;v++){
-            sum1 = sum1 + Mask1[u][v]*imgR[y-u][x-v];
-            sum2 = 0;
+    for (let u = 0; u<2;u++){
+        for(let v = 0; v<2;v++){
+            sum1 = sum1 + mask1[v][u]*pixel[y-v][x-u];
         }
     }
-    for (let u = -1; u<1;u++){
-        for(let v = -1; v<1;v++){
-            sum2 = sum2 + Mask2[u][v]*imgR[y-u][x-v];
+    sum2 = 0;
+    for (let u = 0; u<2;u++){
+        for(let v = 0; v<2;v++){
+            sum2 = sum2 + mask2[v][u]*pixel[y-v][x-u];
         }
     }
 }
@@ -115,20 +124,22 @@ function setSum() {
 function detect() {
     clear();
     if (img) {
-      image(img, 5, 60, 500, 500);
-      //prepare the array
-      imgR = [];
-      imgG = [];
-      imgB = [];
-  
-      tempR = [];
-      tempG = [];
-      tempB = [];
-  
-      var tempImg = img.get();
-      
-      img.loadPixels();
-      tempImg.loadPixels();
+        setOperator();
+
+        image(img, 5, 60, 500, 500);
+        //prepare the array
+        imgR = [];
+        imgG = [];
+        imgB = [];
+    
+        tempR = [];
+        tempG = [];
+        tempB = [];
+    
+        var tempImg = img.get();
+        
+        img.loadPixels();
+        tempImg.loadPixels();
       
         for (let y = 0; y < tempImg.height; y++) {
             
@@ -154,12 +165,12 @@ function detect() {
         }
         for (let y = 1; y < tempImg.height-1; y++) {
             for (let x = 1; x < tempImg.width-1; x++) {
-                setSum();
-                tempR[y][x] = setArah(imgR[y][x], sum1, sum2);
-                setSum();
-                tempG[y][x] = setArah(imgG[y][x], sum1, sum2);
-                setSum();
-                tempB[y][x] = setArah(imgB[y][x], sum1, sum2);
+                setSum(y, x, imgR);
+                tempR[y][x] = setArah(sum1, sum2);
+                setSum(y, x, imgG);
+                tempG[y][x] = setArah(sum1, sum2);
+                setSum(y, x, imgB);
+                tempB[y][x] = setArah(sum1, sum2);
             }
         }
 
@@ -174,8 +185,8 @@ function detect() {
             }
           }
           
-          tempImg.updatePixels();
-          image(tempImg, 550, 60, 500, 500);
+        tempImg.updatePixels();
+        image(tempImg, 550, 60, 500, 500);
 
 
     }
@@ -194,4 +205,5 @@ function handleFile(file) {
   function drawFirstPicture() {
     image(img, 5, 60, 500, 500);
     draw();
+    detect();
   }
