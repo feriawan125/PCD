@@ -5,6 +5,9 @@ let selOperator, selArah, chkNegatif;
 let imgR, imgG, imgB;
 let tempR, tempG, tempB;
 let sizeX, sizeY;
+let mask1, mask2;
+let sum1, sum2;
+
 
 const maskRobert1 = [[ 0,  0,  0],
                      [ 0,  1,  0],
@@ -57,6 +60,58 @@ function draw(){
 
 }
 
+function setOperator(){
+    operator = selOperator.value();
+    if (operator=='robert'){
+        mask1 = maskRobert1;
+        mask2 = maskRobert2;
+    }else if(operator == 'prewitt'){
+        mask1 = maskPrewittHorizontal;
+        mask2 = maskPrewittVertical;
+    }else if(operator == 'sobel'){
+        mask1 = maskSobelHorizontal;
+        mask2 = maskSobelVertical;
+    }else if(operator == 'isotropik'){
+        mask1 = maskIsotropikHorisontal;
+        mask2 = maskIsotropikVertical;
+    }
+}
+
+function setArah(pixel, s1, s2){
+    arah = selArah.value();
+    if(arah == 'mask1'){
+        pixel = round(abs(s1));
+    }else if (arah == 'mask2') {
+        pixel = round(abs(s2));
+    }else if (arah == 'maksimum') {
+        if (Abs(s1) > Abs(s2)){
+            pixel = round(abs(s1));
+        }else{
+            pixel = round(abs(s2));
+        }
+    }else if (ComboBoxArah.Text = 'rerata'){
+        pixel = round((abs(s1)+abs(s2))/2);
+    }else if (ComboBoxArah.Text = 'rerata_geo'){
+        pixel = round(sqrt(s1*s1+s2*s2));
+    }
+    return pixel;
+}
+
+function setSum() {
+    sum1 = 0;
+    for (let u = -1; u<1;u++){
+        for(let v = -1; v<1;v++){
+            sum1 = sum1 + Mask1[u][v]*imgR[y-u][x-v];
+            sum2 = 0;
+        }
+    }
+    for (let u = -1; u<1;u++){
+        for(let v = -1; v<1;v++){
+            sum2 = sum2 + Mask2[u][v]*imgR[y-u][x-v];
+        }
+    }
+}
+
 function detect() {
     clear();
     if (img) {
@@ -75,32 +130,52 @@ function detect() {
       img.loadPixels();
       tempImg.loadPixels();
       
-      for (let y = 0; y < tempImg.height; y++) {
-        
-        imgR[y] = [];
-        imgG[y] = [];
-        imgB[y] = [];
-  
-        tempR[y] = [];
-        tempG[y] = [];
-        tempB[y] = [];
-        
-        for (let x = 0; x < tempImg.width; x++) {
-          var index = (x + y * tempImg.width) * 4;
-          
-          imgR[y][x] = img.pixels[index];
-          imgG[y][x] = img.pixels[index + 1];
-          imgB[y][x] = img.pixels[index + 2];
-  
-          tempR[y][x] = img.pixels[index];
-          tempG[y][x] = img.pixels[index + 1];
-          tempB[y][x] = img.pixels[index + 2];
+        for (let y = 0; y < tempImg.height; y++) {
+            
+            imgR[y] = [];
+            imgG[y] = [];
+            imgB[y] = [];
+    
+            tempR[y] = [];
+            tempG[y] = [];
+            tempB[y] = [];
+            
+            for (let x = 0; x < tempImg.width; x++) {
+            var index = (x + y * tempImg.width) * 4;
+            
+            imgR[y][x] = img.pixels[index];
+            imgG[y][x] = img.pixels[index + 1];
+            imgB[y][x] = img.pixels[index + 2];
+    
+            tempR[y][x] = img.pixels[index];
+            tempG[y][x] = img.pixels[index + 1];
+            tempB[y][x] = img.pixels[index + 2];
+            }
         }
-      }
+        for (let y = 1; y < tempImg.height-1; y++) {
+            for (let x = 1; x < tempImg.width-1; x++) {
+                setSum();
+                tempR[y][x] = setArah(imgR[y][x], sum1, sum2);
+                setSum();
+                tempG[y][x] = setArah(imgG[y][x], sum1, sum2);
+                setSum();
+                tempB[y][x] = setArah(imgB[y][x], sum1, sum2);
+            }
+        }
 
-
-
-
+        for (let y = 0; y < tempImg.height; y++) {
+            for (let x = 0; x < tempImg.width; x++) {
+              let index = (x + y * tempImg.width) * 4;
+      
+              tempImg.pixels[index]     = tempR[y][x];
+              tempImg.pixels[index + 1] = tempG[y][x];
+              tempImg.pixels[index + 2] = tempB[y][x];
+      
+            }
+          }
+          
+          tempImg.updatePixels();
+          image(tempImg, 550, 60, 500, 500);
 
 
     }
