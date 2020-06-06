@@ -1,9 +1,10 @@
 let file;
 let img;
 let tempImg;
-let selOperator, selArah;
+let selOperator, selArah, chkNegatif;
 let imgR, imgG, imgB;
 let tempR, tempG, tempB;
+let sizeX, sizeY;
 
 const maskRobert1 = [[ 0,  0,  0],
                      [ 0,  1,  0],
@@ -40,7 +41,14 @@ const maskIsotropikVertical =  [[-1, -1.41421, -1],
 
 
 function setup(){
-    print(maskRobert1);
+    sizeX = displayWidth-10;
+    sizeY = displayHeight;
+    createCanvas(sizeX, sizeY);
+
+    selOperator = select('#selOPerator');
+    selArah = select('#selArah');
+    chkNegatif = select('#chkNegatif');
+
 }
 
 function draw(){
