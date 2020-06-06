@@ -60,6 +60,8 @@ function setup(){
     selArah = select('#selArah');
     chkNegatif = select('#chkNegatif');
     chkNegatif.input(detect);
+    selArah.changed(detect);
+    selOperator.changed(detect);
 
 }
 
@@ -82,6 +84,9 @@ function setOperator(){
         mask1 = maskIsotropikHorisontal;
         mask2 = maskIsotropikVertical;
     }
+    print(mask1);
+    print(mask2);
+
 }
 
 function setArah(s1, s2){
@@ -102,20 +107,24 @@ function setArah(s1, s2){
     }else if (arah == 'rerata_geo'){
         pixel = round(sqrt(s1*s1+s2*s2));
     }
-    return pixel;
+    if (chkNegatif.checked()){
+        return 255-pixel;
+    }else{
+        return pixel;
+    }
 }
 
 function setSum(y, x, pixel) {
     sum1 = 0;
     for (let v = 0; v<2;v++){
         for(let u = 0; u<2;u++){
-            sum1 = sum1 + mask1[v][u]*pixel[y-v][x-u];
+            sum1 = sum1 + (mask1[v][u]*pixel[y-v][x-u]);
         }
     }
     sum2 = 0;
     for (let v = 0; v<2;v++){
         for(let u = 0; u<2;u++){
-            sum2 = sum2 + mask2[v][u]*pixel[y-v][x-u];
+            sum2 = sum2 + (mask2[v][u]*pixel[y-v][x-u]);
         }
     }
 }
@@ -204,4 +213,5 @@ function handleFile(file) {
   function drawFirstPicture() {
     image(img, 5, 60, 500, 500);
     draw();
+    detect();
   }
