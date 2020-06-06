@@ -45,6 +45,8 @@ function setup(){
     sizeY = displayHeight;
     createCanvas(sizeX, sizeY);
 
+    file = createFileInput(handleFile);
+    file.position(200, 5);
     selOperator = select('#selOPerator');
     selArah = select('#selArah');
     chkNegatif = select('#chkNegatif');
@@ -54,3 +56,67 @@ function setup(){
 function draw(){
 
 }
+
+function detect() {
+    clear();
+    if (img) {
+      image(img, 5, 60, 500, 500);
+      //prepare the array
+      imgR = [];
+      imgG = [];
+      imgB = [];
+  
+      tempR = [];
+      tempG = [];
+      tempB = [];
+  
+      var tempImg = img.get();
+      
+      img.loadPixels();
+      tempImg.loadPixels();
+      
+      for (let y = 0; y < tempImg.height; y++) {
+        
+        imgR[y] = [];
+        imgG[y] = [];
+        imgB[y] = [];
+  
+        tempR[y] = [];
+        tempG[y] = [];
+        tempB[y] = [];
+        
+        for (let x = 0; x < tempImg.width; x++) {
+          var index = (x + y * tempImg.width) * 4;
+          
+          imgR[y][x] = img.pixels[index];
+          imgG[y][x] = img.pixels[index + 1];
+          imgB[y][x] = img.pixels[index + 2];
+  
+          tempR[y][x] = img.pixels[index];
+          tempG[y][x] = img.pixels[index + 1];
+          tempB[y][x] = img.pixels[index + 2];
+        }
+      }
+
+
+
+
+
+
+    }
+}
+
+function handleFile(file) {
+    // print(file);
+  
+    if (file.type === 'image') {
+      img = loadImage(file.data, drawFirstPicture);
+      img.resize(500, 500);
+    }
+  }
+  
+  
+  function drawFirstPicture() {
+    image(img, 5, 60, 500, 500);
+    draw();
+  }
