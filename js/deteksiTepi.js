@@ -59,8 +59,7 @@ function setup(){
     selOperator = select('#selOperator');
     selArah = select('#selArah');
     chkNegatif = select('#chkNegatif');
-    // btnDetect = select('#btnDetect');
-    // btnDetect.mousePressed(detect());
+    chkNegatif.input(detect);
 
 }
 
@@ -93,14 +92,14 @@ function setArah(s1, s2){
     }else if (arah == 'mask2') {
         pixel = round(abs(s2));
     }else if (arah == 'maksimum') {
-        if (Abs(s1) > Abs(s2)){
+        if (abs(s1) > abs(s2)){
             pixel = round(abs(s1));
         }else{
             pixel = round(abs(s2));
         }
-    }else if (ComboBoxArah.Text = 'rerata'){
+    }else if (arah == 'rerata'){
         pixel = round((abs(s1)+abs(s2))/2);
-    }else if (ComboBoxArah.Text = 'rerata_geo'){
+    }else if (arah == 'rerata_geo'){
         pixel = round(sqrt(s1*s1+s2*s2));
     }
     return pixel;
@@ -108,14 +107,14 @@ function setArah(s1, s2){
 
 function setSum(y, x, pixel) {
     sum1 = 0;
-    for (let u = 0; u<2;u++){
-        for(let v = 0; v<2;v++){
+    for (let v = 0; v<2;v++){
+        for(let u = 0; u<2;u++){
             sum1 = sum1 + mask1[v][u]*pixel[y-v][x-u];
         }
     }
     sum2 = 0;
-    for (let u = 0; u<2;u++){
-        for(let v = 0; v<2;v++){
+    for (let v = 0; v<2;v++){
+        for(let u = 0; u<2;u++){
             sum2 = sum2 + mask2[v][u]*pixel[y-v][x-u];
         }
     }
@@ -205,5 +204,4 @@ function handleFile(file) {
   function drawFirstPicture() {
     image(img, 5, 60, 500, 500);
     draw();
-    detect();
   }
