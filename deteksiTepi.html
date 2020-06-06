@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCD Deteksi Tepi</title>
+
+    <!-- P5 js -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+
+</head>
+<body>
+    <div id="">
+        <label for="selOperator">Operator: </label>
+        <select id="selOperator">
+            <option value="isotropik">Isotropik</option>
+            <option value="robert">Robert</option>
+            <option value="prewitt">Prewitt</option>
+            <option value="sobel">Sobel</option>
+        </select>
+        <br>
+        <label for="selArah">Arah: </label>
+        <select name="" id="selArah">
+            <option value="mask1">Mask1</option>
+            <option value="mask2">Mask2</option>
+            <option value="maksimum">Maksimum</option>
+            <option value="rerata">Rerata</option>
+            <option value="rerata_geo">Rerata Geometri</option>
+        </select>
+        <br>
+        <div class="btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-primary">
+                <input type="checkbox"> Negatif
+            </label>
+        </div>
+    </div>
+    <br>
+    <script src="js/deteksiTepi.js"></script>
+</body>
+
+</html>
