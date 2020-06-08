@@ -116,14 +116,14 @@ function setArah(s1, s2){
 
 function setSum(y, x, pixel) {
     sum1 = 0;
-    for (let v = 0; v<2;v++){
-        for(let u = 0; u<2;u++){
+    for (let v = 0; v<=2;v++){
+        for(let u = 0; u<=2;u++){
             sum1 = sum1 + (mask1[v][u]*pixel[y-v][x-u]);
         }
     }
     sum2 = 0;
-    for (let v = 0; v<2;v++){
-        for(let u = 0; u<2;u++){
+    for (let v = 0; v<=2;v++){
+        for(let u = 0; u<=2;u++){
             sum2 = sum2 + (mask2[v][u]*pixel[y-v][x-u]);
         }
     }
@@ -171,8 +171,8 @@ function detect() {
             tempB[y][x] = img.pixels[index + 2];
             }
         }
-        for (let y = 1; y < tempImg.height-1; y++) {
-            for (let x = 1; x < tempImg.width-1; x++) {
+        for (let y = 2; y < tempImg.height-2; y++) {
+            for (let x = 2; x < tempImg.width-2; x++) {
                 setSum(y, x, imgR);
                 tempR[y][x] = setArah(sum1, sum2);
                 setSum(y, x, imgG);
