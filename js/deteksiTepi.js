@@ -84,8 +84,6 @@ function setOperator(){
         mask1 = maskIsotropikHorisontal;
         mask2 = maskIsotropikVertical;
     }
-    print(mask1);
-    print(mask2);
 
 }
 
